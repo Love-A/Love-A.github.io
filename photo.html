@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Print</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+        }
+        img {
+            max-width: 90%;
+            height: auto;
+        }
+        form {
+            margin-top: 20px;
+            display: inline-block;
+            background-color: #222;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        form label, form select, form input, form textarea, form button {
+            display: block;
+            margin: 10px 0;
+            width: 100%;
+        }
+        form input, form textarea, form select {
+            padding: 8px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background-color: #333;
+            color: white;
+        }
+        button {
+            padding: 10px;
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="photo-title"></h1>
+        <img id="photo-img" src="" alt="Selected Photo">
+        <form action="submit-order.php" method="POST">
+            <h2>Order a Print</h2>
+            <input type="hidden" name="image" id="image-input" value="">
+            
+            <label for="size">Choose a size:</label>
+            <select name="size" id="size">
+                <option value="4x6">4x6</option>
+                <option value="8x10">8x10</option>
+                <option value="16x20">16x20</option>
+            </select>
+            
+            <label for="type">Print Type:</label>
+            <select name="type" id="type">
+                <option value="glossy">Glossy</option>
+                <option value="matte">Matte</option>
+            </select>
+            
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" max="10">
+            
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="address">Shipping Address:</label>
+            <textarea id="address" name="address" required></textarea>
+            
+            <button type="submit">Submit Order</button>
+        </form>
+    </div>
+
+    <script>
+        // Get URL parameters to dynamically load the selected image
+        const params = new URLSearchParams(window.location.search);
+        const imageName = params.get('image');
+        const imageTitle = params.get('title');
+
+        // Set the title and image source
+        document.getElementById('photo-title').innerText = imageTitle;
+        document.getElementById('photo-img').src = `images/${imageName}-highres.jpg`;
+        document.getElementById('image-input').value = imageName;
+    </script>
+</body>
+</html>

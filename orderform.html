@@ -1,0 +1,27 @@
+<form action="/submit-order" method="POST">
+    <h2>Order a Print</h2>
+    <img src="selected-photo.jpg" alt="Photo to Order">
+    <label for="size">Choose a size:</label>
+    <select name="size" id="size">
+        <option value="4x6">4x6</option>
+        <option value="8x10">8x10</option>
+        <option value="16x20">16x20</option>
+    </select>
+    
+    <label for="type">Print Type:</label>
+    <select name="type" id="type">
+        <option value="glossy">Glossy</option>
+        <option value="matte">Matte</option>
+    </select>
+    
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" min="1" max="10">
+    
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" name="name" required>
+    
+    <label for="address">Shipping Address:</label>
+    <textarea id="address" name="address" required></textarea>
+
+    <button type="submit">Submit Order</button>
+</form>
